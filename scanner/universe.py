@@ -4,8 +4,16 @@ import os
 client = finnhub.Client(api_key=os.getenv("FINNHUB_KEY"))
 
 
-def get_symbols():
-    # قائمة مبدئية (لاحقًا نكبرها تلقائي)
+def get_penny_universe():
     symbols = client.stock_symbols("US")
 
-    return [s["symbol"] for s in symbols if s["symbol"]]
+    filtered = []
+
+    for s in symbols:
+        sym = s["symbol"]
+
+        # فلترة أولية فقط لتخفيف الضغط
+        if sym.isalpha() and 1 <= len(sym) <= 5:
+            filtered.append(sym)
+
+    return filtered
