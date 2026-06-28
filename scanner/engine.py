@@ -1,3 +1,4 @@
+from scanner.metrics import calculate_score
 import finnhub
 import os
 from scanner.scoring import score_stock
