@@ -12,7 +12,7 @@ def get_penny_universe():
     for s in symbols:
         sym = s["symbol"]
 
-        # 🔥 فلترة ذكية للنظافة والأداء
+        # 🔥 تنظيف السوق
         if (
             sym.isalpha() and
             1 <= len(sym) <= 5 and
@@ -23,5 +23,4 @@ def get_penny_universe():
         ):
             filtered.append(sym)
 
-    # 🔥 تقليل الضغط وتحسين السرعة
     return filtered[:1200]
