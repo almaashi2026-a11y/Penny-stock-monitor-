@@ -12,14 +12,15 @@ def get_penny_universe():
     for s in symbols:
         sym = s["symbol"]
 
-        # 🔥 فلترة نظيفة للأسهم فقط
+        # 🔥 فلترة ذكية وخفيفة
         if (
             sym.isalpha() and
             1 <= len(sym) <= 5 and
             not sym.endswith("W") and
-            not sym.endswith("R")
+            not sym.endswith("R") and
+            not "." in sym
         ):
             filtered.append(sym)
 
-    # 🔥 تقليل الضغط على النظام
-    return filtered[:2000]
+    # 🔥 تقليل الضغط (مهم جداً)
+    return filtered[:1500]
