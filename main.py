@@ -1,17 +1,20 @@
-import time
-from scanner.universe import get_penny_universe
-from scanner.engine import scan_symbol
-from services.telegram import send_alert
+def calculate_score(change, rvol):
+    score = 0
 
-while True:
-    symbols = get_penny_universe()
+    # 🔥 volume = أهم عامل
+    if rvol > 5:
+        score += 50
+    elif rvol > 3:
+        score += 35
+    elif rvol > 2:
+        score += 20
 
-    print(f"Scanning {len(symbols)} symbols...")
+    # 📈 momentum
+    if change > 8:
+        score += 40
+    elif change > 4:
+        score += 25
+    elif change > 2:
+        score += 10
 
-    for s in symbols[:200]:  # حماية من الضغط
-        result = scan_symbol(s)
-
-        if result:
-            send_alert(result)
-
-    time.sleep(300)
+    return min(score, 100)
